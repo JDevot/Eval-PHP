@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Ticket
+{% endblock %}
+
+{% block body %}
+	<div class="container-fluid">
+		<h1>Nouveau ticket</h1>
+		<div class="row">
+			<div class="col-md-6">
+				<div class="card">
+					<div class="card-header">
+						<strong>Formulaire pour la création d'un nouveau ticket</strong>
+					</div>
+					<div class="card-body">
+						{{ include('billet/_form.html.twig') }}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<a href="{{ path('billet_index') }}">back to list</a>{% endblock %}

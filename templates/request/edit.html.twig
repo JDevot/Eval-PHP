@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Demande
+{% endblock %}
+
+{% block body %}
+	<div class="container-fluid">
+		<h1>Modification d'une demande</h1>
+		<div class="row">
+			<div class="col-md-6">
+				<div class="card">
+					<div class="card-header">
+						<strong>Formulaire de modification d'une demande</strong>
+					</div>
+					<div class="card-body">
+						{{ include('request/_form.html.twig') }}
+						{{ include('request/_delete_form.html.twig') }}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>{% endblock %}

@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ticket index
+{% endblock %}
+{% block body %}
+	<div class="container-fluid">
+		<h2>
+			Liste des tickets
+		</h2>
+		<a href="{{ path('billet_new') }}" class="btn btn-primary mb-3">Ajouter un nouveau ticket</a>
+		<div class="fade-in">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="card">
+						<div class="card-header">
+							<i class="fa fa-align-justify"></i>
+							Tableau ticket
+						</div>
+						<div class="card-body">
+							<table class="table table-reponsive-sm">
+								<thead>
+									<tr>
+										<th>Id</th>
+										<th>Subject</th>
+										<th>Title</th>
+										<th>Etat</th>
+										<th>actions</th>
+									</tr>
+								</thead>
+								<tbody>
+									{% for billet in billets %}
+										<tr>
+											<td>{{ billet.id }}</td>
+											<td>{{ billet.subject }}</td>
+											<td>{{ billet.title }}</td>
+											<td>{{ billet.etat ? billet.etat|json_encode : '' }}</td>
+											<td>
+												<a href="{{ path('billet_show', {'id': billet.id}) }}">show</a>
+												<a href="{{ path('billet_edit', {'id': billet.id}) }}">edit</a>
+											</td>
+										</tr>
+									{% else %}
+										<tr>
+											<td colspan="5">no records found</td>
+										</tr>
+									{% endfor %}
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

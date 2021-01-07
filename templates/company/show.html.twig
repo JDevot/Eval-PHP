@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Entreprise
+{% endblock %}
+
+{% block body %}
+	<div class="container-fluid">
+		<h2>
+			Fiche Entreprise
+		</h2>
+		<div class="fade-in">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="card">
+						<div class="card-header">
+							<i class="fa fa-align-justify"></i>
+							Fiche Entreprise
+						</div>
+						<div class="card-body">
+							<table class="table table-reponsive-sm">
+								<thead>
+									<tr>
+										<th>Nom</th>
+										<th>Adresse</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>{{ company.name }}</td>
+										<td>{{ company.adress }}</td>
+									</tr>
+								</tbody>
+							</table>
+							<a href="{{ path('company_edit', {'id':company.id}) }}" href="{{ path('company_edit', {'id': company.id}) }}" class="btn btn-sm btn-primary mt-3">Editer l'entreprise</a>
+							<a href="{{ path('company_index') }}" class="btn btn-sm btn-info mt-3">Retour à la liste</a>
+							{{ include('company/_delete_form.html.twig') }}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

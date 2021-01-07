@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -18,6 +20,8 @@ class User implements UserInterface
      * @ORM\Column(type="integer")
      */
     private $id;
+    
+    private $plainPassword;
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
@@ -34,6 +38,28 @@ class User implements UserInterface
      * @ORM\Column(type="string")
      */
     private $password;
+
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Company::class, inversedBy="users")
+     */
+    private $company;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Requests::class, inversedBy="users")
+     */
+    private $requests;
+
+    public function __toString()
+    {
+        return $this->getEmail();
+    }
+
+    public function __construct()
+    {
+        $this->request = new ArrayCollection();
+        $this->requests = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -111,5 +137,54 @@ class User implements UserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+    public function getPlainPassword()
+    {
+        return $this->plainPassword;
+    }
+
+    public function setPlainPassword($password)
+    {
+        $this->plainPassword = $password;
+    }
+
+
+
+
+
+    public function getCompany(): ?company
+    {
+        return $this->company;
+    }
+
+    public function setCompany(?company $company): self
+    {
+        $this->company = $company;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|requests[]
+     */
+    public function getRequests(): Collection
+    {
+        return $this->requests;
+    }
+
+    public function addRequest(requests $request): self
+    {
+        if (!$this->requests->contains($request)) {
+            $this->requests[] = $request;
+        }
+
+        return $this;
+    }
+
+    public function removeRequest(requests $request): self
+    {
+        $this->requests->removeElement($request);
+
+        return $this;
     }
 }

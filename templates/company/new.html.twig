@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Entreprise
+{% endblock %}
+
+{% block body %}
+	<div class="container-fluid">
+		<h1>Nouvelle entreprise</h1>
+		<div class="row">
+			<div class="col-md-6">
+				<div class="card">
+					<div class="card-header">
+						<strong>Formulaire d'inscription d'une nouvelle entreprise</strong>
+					</div>
+					<div class="card-body">
+						{{ include('company/_form.html.twig') }}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<a href="{{ path('company_index') }}">back to list</a>
+{% endblock %}
